@@ -10,8 +10,9 @@ import {
   StyledButton,
 } from './ContactFormStyled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
-import { getContacts } from 'redux/selectors';
+
+import { selectContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 const nameRegex = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
 
@@ -36,8 +37,8 @@ const schema = object().shape({
 });
 
 export const ContactForm = () => {
-  const contacts = useSelector(getContacts);
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const initialValues = {
     name: '',
